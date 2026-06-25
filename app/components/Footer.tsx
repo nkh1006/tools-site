@@ -4,6 +4,10 @@ export default function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white mt-8 py-6 text-center text-xs text-gray-400">
       <div className="flex items-center justify-center gap-4 mb-3">
+        <Link href="/about" className="hover:text-gray-600 transition-colors">
+          서비스 소개
+        </Link>
+        <span>·</span>
         <Link href="/privacy-policy" className="hover:text-gray-600 transition-colors">
           개인정보처리방침
         </Link>
