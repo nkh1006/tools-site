@@ -17,6 +17,9 @@ export default function Header() {
           <Link href="/unit-converter" className="hover:text-blue-600 transition-colors">
             단위변환
           </Link>
+          <Link href="/salary-calculator" className="hover:text-blue-600 transition-colors">
+            연봉계산기
+          </Link>
         </nav>
       </div>
     </header>

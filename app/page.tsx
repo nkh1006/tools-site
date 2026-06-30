@@ -23,6 +23,13 @@ const tools = [
     desc: "길이, 무게, 온도, 넓이 등 다양한 단위 변환",
     category: "변환",
   },
+  {
+    href: "/salary-calculator",
+    emoji: "💵",
+    title: "연봉 실수령액 계산기",
+    desc: "4대보험·소득세 공제 후 월 실수령액을 바로 계산",
+    category: "금융",
+  },
 ];
 
 const categoryColors: Record<string, string> = {
