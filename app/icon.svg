@@ -3,13 +3,13 @@
   <rect width="32" height="32" rx="8" fill="#2563EB"/>
   <!-- 계산기 화면 -->
   <rect x="7" y="7" width="18" height="7" rx="2" fill="#FFFFFF" opacity="0.9"/>
-  <!-- 숫자 표시 -->
-  <text x="22" y="13.5" font-size="6" fill="#2563EB" text-anchor="end" font-family="monospace" font-weight="bold">123</text>
+  <!-- 화면 내 라인 (텍스트 대신 그래픽으로 표현) -->
+  <rect x="16" y="10" width="7" height="2" rx="1" fill="#2563EB" opacity="0.6"/>
   <!-- 버튼 행 1 -->
   <rect x="7" y="17" width="4" height="3" rx="1" fill="#FFFFFF" opacity="0.7"/>
   <rect x="13" y="17" width="4" height="3" rx="1" fill="#FFFFFF" opacity="0.7"/>
   <rect x="19" y="17" width="6" height="3" rx="1" fill="#93C5FD"/>
-  <!-- 버튼 행 2 -->
+  <!-- 버튼 행 2 (y만 다름) -->
   <rect x="7" y="22" width="4" height="3" rx="1" fill="#FFFFFF" opacity="0.7"/>
   <rect x="13" y="22" width="4" height="3" rx="1" fill="#FFFFFF" opacity="0.7"/>
   <rect x="19" y="22" width="6" height="3" rx="1" fill="#93C5FD"/>
