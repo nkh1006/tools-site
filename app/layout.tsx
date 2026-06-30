@@ -10,6 +10,7 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nltools.net"),
   title: {
     default: "온라인 계산기 모음 - 무료 계산 도구",
     template: "%s | 온라인 계산기",
