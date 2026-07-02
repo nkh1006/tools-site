@@ -181,7 +181,7 @@ export default function LoanCalculator() {
         <>
           <div className="bg-blue-600 rounded-2xl p-6 mb-6 text-white">
             <p className="text-sm opacity-75 mb-4">[{REPAYMENT_LABELS[type]}] 계산 결과</p>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 {
                   label: type === "balloon" ? "월 이자" : type === "equal-principal" ? "첫 달 납입금" : "월 납입금",
@@ -192,7 +192,7 @@ export default function LoanCalculator() {
               ].map((item) => (
                 <div key={item.label} className="bg-white/10 rounded-xl p-4">
                   <p className="text-xs opacity-75 mb-1">{item.label}</p>
-                  <p className="text-lg font-bold">{item.value}</p>
+                  <p className="text-lg font-bold whitespace-nowrap">{item.value}</p>
                 </div>
               ))}
             </div>
