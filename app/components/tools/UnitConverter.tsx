@@ -1,60 +1,65 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 type Category = "length" | "weight" | "temperature" | "area";
 
 interface Unit {
-  label: string;
+  labelKey: string;
   toBase: (v: number) => number;
   fromBase: (v: number) => number;
 }
 
-const UNITS: Record<Category, { label: string; units: Record<string, Unit> }> = {
+const UNITS: Record<Category, { labelKey: string; units: Record<string, Unit> }> = {
   length: {
-    label: "길이",
+    labelKey: "categoryLength",
     units: {
-      mm: { label: "밀리미터 (mm)", toBase: (v) => v / 1000, fromBase: (v) => v * 1000 },
-      cm: { label: "센티미터 (cm)", toBase: (v) => v / 100, fromBase: (v) => v * 100 },
-      m: { label: "미터 (m)", toBase: (v) => v, fromBase: (v) => v },
-      km: { label: "킬로미터 (km)", toBase: (v) => v * 1000, fromBase: (v) => v / 1000 },
-      inch: { label: "인치 (inch)", toBase: (v) => v * 0.0254, fromBase: (v) => v / 0.0254 },
-      ft: { label: "피트 (ft)", toBase: (v) => v * 0.3048, fromBase: (v) => v / 0.3048 },
-      mile: { label: "마일 (mile)", toBase: (v) => v * 1609.34, fromBase: (v) => v / 1609.34 },
+      mm: { labelKey: "unitMm", toBase: (v) => v / 1000, fromBase: (v) => v * 1000 },
+      cm: { labelKey: "unitCm", toBase: (v) => v / 100, fromBase: (v) => v * 100 },
+      m: { labelKey: "unitM", toBase: (v) => v, fromBase: (v) => v },
+      km: { labelKey: "unitKm", toBase: (v) => v * 1000, fromBase: (v) => v / 1000 },
+      inch: { labelKey: "unitInch", toBase: (v) => v * 0.0254, fromBase: (v) => v / 0.0254 },
+      ft: { labelKey: "unitFt", toBase: (v) => v * 0.3048, fromBase: (v) => v / 0.3048 },
+      mile: { labelKey: "unitMile", toBase: (v) => v * 1609.34, fromBase: (v) => v / 1609.34 },
     },
   },
   weight: {
-    label: "무게",
+    labelKey: "categoryWeight",
     units: {
-      mg: { label: "밀리그램 (mg)", toBase: (v) => v / 1e6, fromBase: (v) => v * 1e6 },
-      g: { label: "그램 (g)", toBase: (v) => v / 1000, fromBase: (v) => v * 1000 },
-      kg: { label: "킬로그램 (kg)", toBase: (v) => v, fromBase: (v) => v },
-      t: { label: "톤 (t)", toBase: (v) => v * 1000, fromBase: (v) => v / 1000 },
-      lb: { label: "파운드 (lb)", toBase: (v) => v * 0.453592, fromBase: (v) => v / 0.453592 },
-      oz: { label: "온스 (oz)", toBase: (v) => v * 0.0283495, fromBase: (v) => v / 0.0283495 },
+      mg: { labelKey: "unitMg", toBase: (v) => v / 1e6, fromBase: (v) => v * 1e6 },
+      g: { labelKey: "unitG", toBase: (v) => v / 1000, fromBase: (v) => v * 1000 },
+      kg: { labelKey: "unitKg", toBase: (v) => v, fromBase: (v) => v },
+      t: { labelKey: "unitT", toBase: (v) => v * 1000, fromBase: (v) => v / 1000 },
+      lb: { labelKey: "unitLb", toBase: (v) => v * 0.453592, fromBase: (v) => v / 0.453592 },
+      oz: { labelKey: "unitOz", toBase: (v) => v * 0.0283495, fromBase: (v) => v / 0.0283495 },
     },
   },
   temperature: {
-    label: "온도",
+    labelKey: "categoryTemperature",
     units: {
-      c: { label: "섭씨 (°C)", toBase: (v) => v, fromBase: (v) => v },
-      f: { label: "화씨 (°F)", toBase: (v) => (v - 32) * (5 / 9), fromBase: (v) => v * (9 / 5) + 32 },
-      k: { label: "켈빈 (K)", toBase: (v) => v - 273.15, fromBase: (v) => v + 273.15 },
+      c: { labelKey: "unitC", toBase: (v) => v, fromBase: (v) => v },
+      f: { labelKey: "unitF", toBase: (v) => (v - 32) * (5 / 9), fromBase: (v) => v * (9 / 5) + 32 },
+      k: { labelKey: "unitK", toBase: (v) => v - 273.15, fromBase: (v) => v + 273.15 },
     },
   },
   area: {
-    label: "넓이",
+    labelKey: "categoryArea",
     units: {
-      "cm2": { label: "제곱센티미터 (cm²)", toBase: (v) => v / 1e4, fromBase: (v) => v * 1e4 },
-      "m2": { label: "제곱미터 (m²)", toBase: (v) => v, fromBase: (v) => v },
-      "km2": { label: "제곱킬로미터 (km²)", toBase: (v) => v * 1e6, fromBase: (v) => v / 1e6 },
-      pyeong: { label: "평 (坪)", toBase: (v) => v * 3.30579, fromBase: (v) => v / 3.30579 },
-      acre: { label: "에이커 (acre)", toBase: (v) => v * 4046.86, fromBase: (v) => v / 4046.86 },
+      "cm2": { labelKey: "unitCm2", toBase: (v) => v / 1e4, fromBase: (v) => v * 1e4 },
+      "m2": { labelKey: "unitM2", toBase: (v) => v, fromBase: (v) => v },
+      "km2": { labelKey: "unitKm2", toBase: (v) => v * 1e6, fromBase: (v) => v / 1e6 },
+      pyeong: { labelKey: "unitPyeong", toBase: (v) => v * 3.30579, fromBase: (v) => v / 3.30579 },
+      acre: { labelKey: "unitAcre", toBase: (v) => v * 4046.86, fromBase: (v) => v / 4046.86 },
     },
   },
 };
 
 export default function UnitConverter() {
+  const t = useTranslations("UnitConverter");
+  const locale = useLocale();
+  const numberLocale = locale === "ko" ? "ko-KR" : "en-US";
+
   const [category, setCategory] = useState<Category>("length");
   const [fromUnit, setFromUnit] = useState("m");
   const [toUnit, setToUnit] = useState("km");
@@ -70,7 +75,7 @@ export default function UnitConverter() {
     const result = cat.units[toUnit]?.fromBase(base);
     if (result === undefined) return "";
     const rounded = parseFloat(result.toPrecision(8));
-    return rounded.toLocaleString("ko-KR", { maximumFractionDigits: 8 });
+    return rounded.toLocaleString(numberLocale, { maximumFractionDigits: 8 });
   };
 
   const handleCategoryChange = (c: Category) => {
@@ -92,7 +97,7 @@ export default function UnitConverter() {
               category === c ? "bg-purple-600 text-white" : "bg-white border border-gray-300 text-gray-600 hover:border-purple-400"
             }`}
           >
-            {UNITS[c].label}
+            {t(UNITS[c].labelKey)}
           </button>
         ))}
       </div>
@@ -101,7 +106,7 @@ export default function UnitConverter() {
         <div className="grid grid-cols-1 gap-4">
           {/* 입력 */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">변환할 값</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("inputValue")}</label>
             <input
               type="number"
               value={inputValue}
@@ -112,26 +117,26 @@ export default function UnitConverter() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm text-gray-600 mb-1">변환 전</label>
+              <label className="block text-sm text-gray-600 mb-1">{t("fromUnit")}</label>
               <select
                 value={fromUnit}
                 onChange={(e) => setFromUnit(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 {unitKeys.map((k) => (
-                  <option key={k} value={k}>{cat.units[k].label}</option>
+                  <option key={k} value={k}>{t(cat.units[k].labelKey)}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-600 mb-1">변환 후</label>
+              <label className="block text-sm text-gray-600 mb-1">{t("toUnit")}</label>
               <select
                 value={toUnit}
                 onChange={(e) => setToUnit(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 {unitKeys.map((k) => (
-                  <option key={k} value={k}>{cat.units[k].label}</option>
+                  <option key={k} value={k}>{t(cat.units[k].labelKey)}</option>
                 ))}
               </select>
             </div>
@@ -140,12 +145,12 @@ export default function UnitConverter() {
           {/* 결과 */}
           <div className="bg-purple-50 rounded-xl p-5 text-center">
             <p className="text-sm text-gray-500 mb-1">
-              {inputValue} {cat.units[fromUnit]?.label} =
+              {inputValue} {t(cat.units[fromUnit]?.labelKey)} =
             </p>
             <p className="text-3xl font-bold text-purple-700">
               {convert()}
             </p>
-            <p className="text-sm text-gray-500 mt-1">{cat.units[toUnit]?.label}</p>
+            <p className="text-sm text-gray-500 mt-1">{t(cat.units[toUnit]?.labelKey)}</p>
           </div>
         </div>
       </div>

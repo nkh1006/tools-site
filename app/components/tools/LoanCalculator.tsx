@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 type RepaymentType = "equal-installment" | "equal-principal" | "balloon";
 
@@ -10,10 +11,6 @@ interface Schedule {
   principal: number;
   interest: number;
   balance: number;
-}
-
-function formatKRW(value: number) {
-  return value.toLocaleString("ko-KR") + "원";
 }
 
 function calcEqualInstallment(p: number, r: number, n: number): Schedule[] {
@@ -71,13 +68,22 @@ function calcBalloon(p: number, r: number, n: number): Schedule[] {
   }));
 }
 
-const REPAYMENT_LABELS: Record<RepaymentType, string> = {
-  "equal-installment": "원리금균등",
-  "equal-principal": "원금균등",
-  balloon: "만기일시",
-};
-
 export default function LoanCalculator() {
+  const t = useTranslations("LoanCalculator");
+  const locale = useLocale();
+  const numberLocale = locale === "ko" ? "ko-KR" : "en-US";
+
+  const formatCurrency = (value: number) =>
+    locale === "ko"
+      ? `${value.toLocaleString(numberLocale)}${t("currencyUnit")}`
+      : `${value.toLocaleString(numberLocale)} ${t("currencyUnit")}`;
+
+  const REPAYMENT_LABELS: Record<RepaymentType, string> = {
+    "equal-installment": t("repaymentEqualInstallment"),
+    "equal-principal": t("repaymentEqualPrincipal"),
+    balloon: t("repaymentBalloon"),
+  };
+
   const [principal, setPrincipal] = useState("100,000,000");
   const [rate, setRate] = useState("4.5");
   const [months, setMonths] = useState("360");
@@ -105,17 +111,17 @@ export default function LoanCalculator() {
   const handlePrincipal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/,/g, "");
     if (/^\d*$/.test(raw))
-      setPrincipal(raw ? parseInt(raw).toLocaleString("ko-KR") : "");
+      setPrincipal(raw ? parseInt(raw).toLocaleString(numberLocale) : "");
   };
 
   return (
     <div>
       {/* 입력 */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-        <h2 className="font-bold text-gray-800 mb-4">대출 조건 입력</h2>
+        <h2 className="font-bold text-gray-800 mb-4">{t("inputTitle")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">대출 원금</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("principal")}</label>
             <div className="relative">
               <input
                 type="text"
@@ -123,11 +129,11 @@ export default function LoanCalculator() {
                 onChange={handlePrincipal}
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-8 text-right focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">원</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">{t("currencyUnit")}</span>
             </div>
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">연이자율</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("rate")}</label>
             <div className="relative">
               <input
                 type="number"
@@ -140,7 +146,7 @@ export default function LoanCalculator() {
             </div>
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">대출 기간</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("months")}</label>
             <div className="relative">
               <input
                 type="number"
@@ -149,26 +155,29 @@ export default function LoanCalculator() {
                 min="1" max="600"
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-14 text-right focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">개월</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">{t("monthsUnit")}</span>
             </div>
             {months && (
               <p className="text-xs text-gray-400 mt-1 text-right">
-                {Math.floor(parseInt(months) / 12)}년 {parseInt(months) % 12}개월
+                {t("yearsMonths", {
+                  years: Math.floor(parseInt(months) / 12),
+                  months: parseInt(months) % 12,
+                })}
               </p>
             )}
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">상환 방식</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("repaymentType")}</label>
             <div className="grid grid-cols-3 gap-1">
-              {(Object.keys(REPAYMENT_LABELS) as RepaymentType[]).map((t) => (
+              {(Object.keys(REPAYMENT_LABELS) as RepaymentType[]).map((rt) => (
                 <button
-                  key={t}
-                  onClick={() => setType(t)}
+                  key={rt}
+                  onClick={() => setType(rt)}
                   className={`py-3 rounded-lg text-sm font-medium transition-colors ${
-                    type === t ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    type === rt ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
-                  {REPAYMENT_LABELS[t]}
+                  {REPAYMENT_LABELS[rt]}
                 </button>
               ))}
             </div>
@@ -180,15 +189,20 @@ export default function LoanCalculator() {
       {result && (
         <>
           <div className="bg-blue-600 rounded-2xl p-6 mb-6 text-white">
-            <p className="text-sm opacity-75 mb-4">[{REPAYMENT_LABELS[type]}] 계산 결과</p>
+            <p className="text-sm opacity-75 mb-4">{t("resultTitle", { type: REPAYMENT_LABELS[type] })}</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 {
-                  label: type === "balloon" ? "월 이자" : type === "equal-principal" ? "첫 달 납입금" : "월 납입금",
-                  value: formatKRW(result.schedule[0].payment),
+                  label:
+                    type === "balloon"
+                      ? t("monthlyInterest")
+                      : type === "equal-principal"
+                      ? t("firstPayment")
+                      : t("monthlyPayment"),
+                  value: formatCurrency(result.schedule[0].payment),
                 },
-                { label: "총 이자", value: formatKRW(result.totalInterest) },
-                { label: "총 납입금", value: formatKRW(result.totalPayment) },
+                { label: t("totalInterest"), value: formatCurrency(result.totalInterest) },
+                { label: t("totalPayment"), value: formatCurrency(result.totalPayment) },
               ].map((item) => (
                 <div key={item.label} className="bg-white/10 rounded-xl p-4">
                   <p className="text-xs opacity-75 mb-1">{item.label}</p>
@@ -204,15 +218,15 @@ export default function LoanCalculator() {
               onClick={() => setShowSchedule(!showSchedule)}
               className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition-colors"
             >
-              <span className="font-medium text-gray-800">상환 스케줄</span>
-              <span className="text-gray-400 text-sm">{showSchedule ? "▲ 접기" : "▼ 펼치기"}</span>
+              <span className="font-medium text-gray-800">{t("scheduleTitle")}</span>
+              <span className="text-gray-400 text-sm">{showSchedule ? t("collapse") : t("expand")}</span>
             </button>
             {showSchedule && (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead className="bg-gray-50 border-t border-gray-200">
                     <tr>
-                      {["회차", "납입금", "원금", "이자", "잔액"].map((h) => (
+                      {[t("tableRound"), t("tablePayment"), t("tablePrincipal"), t("tableInterest"), t("tableBalance")].map((h) => (
                         <th key={h} className="px-4 py-3 text-right text-xs font-medium text-gray-500 first:text-center">
                           {h}
                         </th>
@@ -223,10 +237,10 @@ export default function LoanCalculator() {
                     {result.schedule.map((row) => (
                       <tr key={row.month} className="hover:bg-gray-50">
                         <td className="px-4 py-2.5 text-center text-gray-400">{row.month}</td>
-                        <td className="px-4 py-2.5 text-right font-medium">{row.payment.toLocaleString()}</td>
-                        <td className="px-4 py-2.5 text-right text-blue-600">{row.principal.toLocaleString()}</td>
-                        <td className="px-4 py-2.5 text-right text-red-500">{row.interest.toLocaleString()}</td>
-                        <td className="px-4 py-2.5 text-right text-gray-400">{row.balance.toLocaleString()}</td>
+                        <td className="px-4 py-2.5 text-right font-medium">{row.payment.toLocaleString(numberLocale)}</td>
+                        <td className="px-4 py-2.5 text-right text-blue-600">{row.principal.toLocaleString(numberLocale)}</td>
+                        <td className="px-4 py-2.5 text-right text-red-500">{row.interest.toLocaleString(numberLocale)}</td>
+                        <td className="px-4 py-2.5 text-right text-gray-400">{row.balance.toLocaleString(numberLocale)}</td>
                       </tr>
                     ))}
                   </tbody>

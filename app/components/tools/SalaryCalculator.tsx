@@ -1,10 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-
-function fmt(n: number) {
-  return n.toLocaleString("ko-KR") + "원";
-}
+import { useLocale, useTranslations } from "next-intl";
 
 function getEmploymentDeduction(salary: number) {
   if (salary <= 5_000_000) return salary * 0.7;
@@ -25,6 +22,15 @@ function getIncomeTax(taxable: number) {
 }
 
 export default function SalaryCalculator() {
+  const t = useTranslations("SalaryCalculator");
+  const locale = useLocale();
+  const numberLocale = locale === "ko" ? "ko-KR" : "en-US";
+
+  const fmt = (n: number) =>
+    locale === "ko"
+      ? `${n.toLocaleString(numberLocale)}${t("currencyUnit")}`
+      : `${n.toLocaleString(numberLocale)} ${t("currencyUnit")}`;
+
   const [salaryInput, setSalaryInput] = useState("40,000,000");
   const [dependents, setDependents] = useState(0);
 
@@ -87,17 +93,17 @@ export default function SalaryCalculator() {
   const handleSalaryInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/,/g, "");
     if (/^\d*$/.test(raw))
-      setSalaryInput(raw ? parseInt(raw).toLocaleString("ko-KR") : "");
+      setSalaryInput(raw ? parseInt(raw).toLocaleString(numberLocale) : "");
   };
 
   const deductionRows = result
     ? [
-        { label: "국민연금 (4.5%)", value: result.nationalPension },
-        { label: "건강보험 (3.545%)", value: result.healthInsurance },
-        { label: "장기요양보험", value: result.longTermCare },
-        { label: "고용보험 (0.9%)", value: result.employmentInsurance },
-        { label: "소득세", value: result.monthlyIncomeTax },
-        { label: "지방소득세 (소득세 × 10%)", value: result.monthlyLocalTax },
+        { label: t("nationalPension"), value: result.nationalPension },
+        { label: t("healthInsurance"), value: result.healthInsurance },
+        { label: t("longTermCare"), value: result.longTermCare },
+        { label: t("employmentInsurance"), value: result.employmentInsurance },
+        { label: t("incomeTax"), value: result.monthlyIncomeTax },
+        { label: t("localTax"), value: result.monthlyLocalTax },
       ]
     : [];
 
@@ -105,10 +111,10 @@ export default function SalaryCalculator() {
     <div>
       {/* 입력 */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-        <h2 className="font-bold text-gray-800 mb-4">급여 조건 입력</h2>
+        <h2 className="font-bold text-gray-800 mb-4">{t("inputTitle")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">연봉</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("salary")}</label>
             <div className="relative">
               <input
                 type="text"
@@ -117,11 +123,11 @@ export default function SalaryCalculator() {
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-8 text-right focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="40,000,000"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">원</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">{t("currencyUnit")}</span>
             </div>
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">부양가족 수 (본인 제외)</label>
+            <label className="block text-sm text-gray-600 mb-1">{t("dependents")}</label>
             <div className="flex gap-2">
               {[0, 1, 2, 3, 4].map((n) => (
                 <button
@@ -133,7 +139,7 @@ export default function SalaryCalculator() {
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
-                  {n}명
+                  {n}{t("personUnit")}
                 </button>
               ))}
             </div>
@@ -145,15 +151,15 @@ export default function SalaryCalculator() {
       {result && (
         <>
           <div className="bg-blue-600 rounded-2xl p-6 mb-6 text-white">
-            <p className="text-sm opacity-75 mb-4">월 실수령액</p>
+            <p className="text-sm opacity-75 mb-4">{t("monthlyTakeHome")}</p>
             <p className="text-4xl font-bold mb-4">{fmt(result.monthlyTakeHome)}</p>
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white/10 rounded-xl p-4">
-                <p className="text-xs opacity-75 mb-1">월 급여 (세전)</p>
+                <p className="text-xs opacity-75 mb-1">{t("monthlyGross")}</p>
                 <p className="text-lg font-bold">{fmt(result.monthly)}</p>
               </div>
               <div className="bg-white/10 rounded-xl p-4">
-                <p className="text-xs opacity-75 mb-1">연 실수령액</p>
+                <p className="text-xs opacity-75 mb-1">{t("annualTakeHome")}</p>
                 <p className="text-lg font-bold">{fmt(result.annualTakeHome)}</p>
               </div>
             </div>
@@ -161,7 +167,7 @@ export default function SalaryCalculator() {
 
           {/* 공제 내역 */}
           <div className="bg-white rounded-2xl border border-gray-200 p-6">
-            <h3 className="font-bold text-gray-800 mb-4">월 공제 내역</h3>
+            <h3 className="font-bold text-gray-800 mb-4">{t("deductionTitle")}</h3>
             <div className="space-y-3">
               {deductionRows.map((row) => (
                 <div key={row.label} className="flex justify-between items-center">
@@ -170,7 +176,7 @@ export default function SalaryCalculator() {
                 </div>
               ))}
               <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
-                <span className="text-sm font-bold text-gray-800">총 공제액</span>
+                <span className="text-sm font-bold text-gray-800">{t("totalDeduction")}</span>
                 <span className="text-sm font-bold text-red-500">- {fmt(result.totalDeduction)}</span>
               </div>
             </div>
@@ -180,9 +186,9 @@ export default function SalaryCalculator() {
 
       {/* SEO 설명 */}
       <div className="mt-8 p-6 bg-gray-100 rounded-2xl text-sm text-gray-600 leading-relaxed space-y-2">
-        <p className="font-semibold text-gray-700">연봉 실수령액 계산 방법</p>
-        <p>연봉 실수령액은 세전 연봉에서 4대보험(국민연금·건강보험·장기요양보험·고용보험)과 소득세·지방소득세를 공제한 금액입니다.</p>
-        <p>본 계산기는 2024년 기준 공제율을 적용하며, 실제 수령액은 회사 규정 및 개인 상황에 따라 다를 수 있습니다.</p>
+        <p className="font-semibold text-gray-700">{t("seoTitle")}</p>
+        <p>{t("seoDesc1")}</p>
+        <p>{t("seoDesc2")}</p>
       </div>
     </div>
   );
