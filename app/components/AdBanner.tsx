@@ -1,15 +1,38 @@
-import { useTranslations } from "next-intl";
+"use client";
+
+import { useEffect, useRef } from "react";
+
+declare global {
+  interface Window {
+    adsbygoogle: unknown[];
+  }
+}
 
 export default function AdBanner({ size = "horizontal" }: { size?: "horizontal" | "square" }) {
-  const t = useTranslations("AdBanner");
-  const cls =
-    size === "horizontal"
-      ? "h-24 w-full"
-      : "h-60 w-full";
+  const insRef = useRef<HTMLModElement>(null);
+  const pushed = useRef(false);
+
+  useEffect(() => {
+    if (pushed.current) return;
+    pushed.current = true;
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const minHeight = size === "horizontal" ? "6rem" : "15rem";
 
   return (
-    <div className={`${cls} bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 text-sm my-4`}>
-      {t("placeholder")}
-    </div>
+    <ins
+      ref={insRef}
+      className="adsbygoogle block w-full my-4"
+      style={{ display: "block", minHeight }}
+      data-ad-client="ca-pub-5468583242806327"
+      data-ad-slot="7470659426"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
   );
 }
