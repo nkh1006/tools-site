@@ -40,6 +40,39 @@ export default async function SalaryCalculatorPage({
       <AdBanner />
       <SalaryCalculator />
       <AdBanner />
+
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6 space-y-2 text-sm text-gray-600 leading-relaxed">
+        <h2 className="font-bold text-gray-800">{t("stepsTitle")}</h2>
+        <ol className="list-decimal list-inside space-y-1.5">
+          <li>{t("step1")}</li>
+          <li>{t("step2")}</li>
+          <li>{t("step3")}</li>
+          <li>{t("step4")}</li>
+          <li>{t("step5")}</li>
+          <li>{t("step6")}</li>
+          <li>{t("step7")}</li>
+          <li>{t("step8")}</li>
+        </ol>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6 space-y-2 text-sm text-gray-600 leading-relaxed">
+        <h2 className="font-bold text-gray-800">{t("exampleTitle")}</h2>
+        <p>{t("example1")}</p>
+        <p>{t("example2")}</p>
+        <p className="text-gray-500 pt-2">{t("rateNote")}</p>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6">
+        <h2 className="font-bold text-gray-800 mb-3">{t("faqTitle")}</h2>
+        <div className="space-y-4">
+          {t.raw("faq").map((item: { q: string; a: string }, i: number) => (
+            <div key={i}>
+              <p className="text-sm font-medium text-gray-800">Q. {item.q}</p>
+              <p className="text-sm text-gray-600 leading-relaxed mt-1">A. {item.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -46,7 +46,27 @@
     "guideEqualPrincipalLabel": "Equal Principal",
     "guideEqualPrincipalDesc": "Pay the same principal every month. Relatively lower total interest.",
     "guideBalloonLabel": "Bullet",
-    "guideBalloonDesc": "Pay only interest during the term, then repay the full principal at maturity."
+    "guideBalloonDesc": "Pay only interest during the term, then repay the full principal at maturity.",
+    "formulaTitle": "Loan Interest Formulas",
+    "formulaEqualInstallmentTitle": "Equal Payment (Amortized)",
+    "formulaEqualInstallmentBody": "Monthly payment = principal × monthly rate × (1+monthly rate)^months ÷ {(1+monthly rate)^months − 1}. Monthly rate is the annual rate divided by 12. You pay the same amount every month, but the interest portion is larger early on and the principal portion grows over time.",
+    "formulaEqualPrincipalTitle": "Equal Principal",
+    "formulaEqualPrincipalBody": "The principal paid each month = loan principal ÷ number of months, and stays constant. Interest is calculated as the remaining balance × monthly rate, so as the balance shrinks, the monthly payment decreases over time.",
+    "formulaBalloonTitle": "Bullet (Interest-Only)",
+    "formulaBalloonBody": "You pay only interest (principal × monthly rate) each month, then repay the full principal plus the final month's interest in one lump sum at maturity. Since the principal never decreases, total interest is the highest of the three plans.",
+    "exampleTitle": "Example (30,000,000 KRW principal · 5% annual rate · 36 months)",
+    "exampleEqualInstallment": "Equal Payment: about 899,127 KRW × 36 payments → total interest 2,368,570 KRW, total payment 32,368,572 KRW",
+    "exampleEqualPrincipal": "Equal Principal: starts at 958,333 KRW and decreases each month → total interest 2,312,500 KRW, total payment 32,312,500 KRW",
+    "exampleBalloon": "Bullet: 125,000 KRW interest-only each month, plus the full 30,000,000 KRW principal at the final month → total interest 4,500,000 KRW, total payment 34,500,000 KRW",
+    "exampleNote": "Under identical terms, total interest can differ by up to about 2.13M KRW depending on the repayment plan. Equal principal has the lowest total interest but the highest initial burden; bullet repayment has the lowest initial burden but the highest total interest.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "Which is better, equal payment or equal principal?", "a": "Equal principal results in lower total interest, but its early monthly payments are much higher than equal payment. If your income is steady, equal payment is easier to manage; if you can afford higher payments early on, equal principal saves more overall." },
+      { "q": "How much interest do I save by repaying early?", "a": "Excluding any early repayment fee, you save interest on the remaining principal going forward. Repaying early in the loan term saves more. This calculator shows the standard schedule and does not account for early repayment." },
+      { "q": "Should I choose a variable or fixed interest rate?", "a": "Variable rates move with the market, while fixed rates stay the same for the full term. A fixed rate can be advantageous if rates are expected to rise, and a variable rate if they're expected to fall." },
+      { "q": "What happens to total interest if I extend the loan term?", "a": "A longer term lowers your monthly payment but increases total interest. In the example above, extending from 36 to 60 months lowers the monthly payment but raises the total interest paid." },
+      { "q": "Why do the results differ from my actual bank loan?", "a": "Banks vary in origination fees, early repayment penalties, and preferential rate discounts, which can cause real repayment amounts to differ. Check with your lender for exact terms." }
+    ]
   },
   "LoanCalculator": {
     "inputTitle": "Enter Loan Details",
@@ -79,7 +99,26 @@
     "metaTitle": "BMI Calculator",
     "metaDescription": "Enter your height and weight to calculate your Body Mass Index (BMI) and weight category.",
     "h1": "⚖️ BMI Calculator",
-    "subtitle": "Check your Body Mass Index and weight category from height and weight"
+    "subtitle": "Check your Body Mass Index and weight category from height and weight",
+    "formulaTitle": "BMI Formula",
+    "formulaBody": "BMI = weight (kg) ÷ [height (m)]². For example, at 170cm (1.7m) and 65kg: BMI = 65 ÷ (1.7 × 1.7) = 65 ÷ 2.89 ≈ 22.5, which falls in the normal range.",
+    "categoryTitle": "BMI Categories (Asia-Pacific Standard)",
+    "categoryUnder": "Below 18.5 — Underweight",
+    "categoryNormal": "18.5 – 22.9 — Normal",
+    "categoryOver": "23 – 24.9 — Overweight",
+    "categoryObese1": "25 – 29.9 — Obese Class 1",
+    "categoryObese2": "30 and above — Obese Class 2",
+    "categoryNote": "The Asia-Pacific standard classifies lower BMI values as at-risk compared to the general WHO standard. This calculator uses the Asia-Pacific standard, similar to the Korean Society for the Study of Obesity's criteria.",
+    "limitationsTitle": "Limitations of BMI",
+    "limitationsBody": "Because BMI is calculated from height and weight alone, it cannot distinguish muscle mass from body fat. A muscular athlete may show a high BMI despite low body fat, while a person with so-called \"skinny fat\" body composition may have a normal BMI but a high body fat percentage. For a more accurate assessment, consider pairing BMI with a body fat measurement (e.g., a bioelectrical impedance scan).",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "My BMI is normal but my body fat percentage is high — why?", "a": "This is often called \"skinny fat\" — low muscle mass with a relatively high body fat ratio. BMI alone can't reveal body composition, so a body fat measurement is needed alongside it." },
+      { "q": "Do adults and children/teens use the same BMI standard?", "a": "No. People under 18 use age- and sex-specific percentile charts instead. This calculator uses the adult standard." },
+      { "q": "Why does having more muscle raise my BMI?", "a": "BMI only accounts for total body weight, so muscle weighs the same as fat in the calculation. That's why a muscular person with low body fat can still show as overweight or obese by BMI." },
+      { "q": "Do Asian and Western populations use different BMI thresholds?", "a": "Yes. Unlike the general WHO standard, the Asia-Pacific standard treats lower BMI values as risk thresholds at the same body fat percentage. This calculator uses the Asia-Pacific standard." },
+      { "q": "Can pregnant women use this calculator?", "a": "During pregnancy, weight gain is a normal part of the process, so standard BMI categories don't apply well. Consult an OB-GYN for weight management guidance during pregnancy." }
+    ]
   },
   "BmiCalculator": {
     "inputTitle": "Enter Body Info",
@@ -107,7 +146,30 @@
     "metaTitle": "Unit Converter",
     "metaDescription": "Convert length, weight, temperature, area, and other units instantly.",
     "h1": "📐 Unit Converter",
-    "subtitle": "Easily convert length, weight, temperature, and area units"
+    "subtitle": "Easily convert length, weight, temperature, and area units",
+    "formulaTitle": "Unit Conversion Formulas",
+    "formulaLengthTitle": "Length",
+    "formulaLengthBody": "1m = 100cm = 1,000mm = 0.001km, 1inch = 2.54cm, 1ft = 0.3048m, 1mile ≈ 1,609.34m",
+    "formulaWeightTitle": "Weight",
+    "formulaWeightBody": "1kg = 1,000g = 1,000,000mg = 0.001t, 1lb ≈ 0.453592kg, 1oz ≈ 28.3495g",
+    "formulaTemperatureTitle": "Temperature",
+    "formulaTemperatureBody": "Celsius to Fahrenheit: °F = °C × 9/5 + 32. Fahrenheit to Celsius: °C = (°F − 32) × 5/9. Celsius to Kelvin: K = °C + 273.15",
+    "formulaAreaTitle": "Area",
+    "formulaAreaBody": "1m² = 10,000cm² = 0.000001km², 1 pyeong ≈ 3.30579m², 1 acre ≈ 4,046.86m²",
+    "exampleTitle": "Common Conversion Examples",
+    "example1": "100°C (boiling point of water) = 212°F = 373.15K",
+    "example2": "1 mile ≈ 1.61km",
+    "example3": "1kg ≈ 2.2lb",
+    "example4": "A 30-pyeong apartment ≈ 99.17m²",
+    "example5": "1 acre ≈ 4,046.86m² ≈ 1,224 pyeong",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "How many square meters is one pyeong exactly?", "a": "1 pyeong = 3.30579m². It's a traditional Korean unit commonly used in real estate listings — not an SI unit, but still widely used in Korea." },
+      { "q": "Why is the Celsius-to-Fahrenheit formula so complex?", "a": "Celsius is based on water's freezing point (0°C) and boiling point (100°C), while Fahrenheit uses a different reference, so both a scaling factor (9/5) and an offset (32) are needed to convert between them." },
+      { "q": "Why do mile-to-kilometer conversions vary slightly between calculators?", "a": "The internationally standardized value for 1 mile is 1,609.344m; different calculators round decimals differently, producing tiny discrepancies." },
+      { "q": "Is an ounce (oz) a weight or volume unit?", "a": "Ounce is used for both weight (mass) and volume (fluid) measurements. This calculator uses the weight unit (1oz ≈ 28.35g)." },
+      { "q": "When is an acre used?", "a": "Acres are mainly used to describe land area in the US and UK. In Korea, it's occasionally used as a reference when describing golf courses or large plots of land." }
+    ]
   },
   "UnitConverter": {
     "categoryLength": "Length",
@@ -143,7 +205,28 @@
     "metaTitle": "Salary Take-Home Pay Calculator",
     "metaDescription": "Enter your annual salary in Korea to instantly calculate monthly take-home pay after 4 major social insurances and income tax. Based on 2024 deduction rates.",
     "h1": "💵 Salary Take-Home Pay Calculator",
-    "subtitle": "Monthly take-home pay after social insurance and income tax deductions (based on 2024 rates, Korea)"
+    "subtitle": "Monthly take-home pay after social insurance and income tax deductions (based on 2024 rates, Korea)",
+    "stepsTitle": "How Take-Home Pay Is Calculated",
+    "step1": "Monthly salary = annual salary ÷ 12",
+    "step2": "National Pension = monthly salary × 4.5% (capped at 5.9M KRW monthly income)",
+    "step3": "Health Insurance = monthly salary × 3.545%",
+    "step4": "Long-Term Care Insurance = health insurance premium × 12.95%",
+    "step5": "Employment Insurance = monthly salary × 0.9%",
+    "step6": "Income tax is calculated by applying the progressive tax rate (6–45%) to taxable income (after the earned income deduction and personal deductions), then subtracting the earned income tax credit",
+    "step7": "Local Income Tax = income tax × 10%",
+    "step8": "Take-home pay = monthly salary − (National Pension + Health Insurance + Long-Term Care + Employment Insurance + income tax + local tax)",
+    "exampleTitle": "Examples",
+    "example1": "Annual salary 40,000,000 KRW, 0 dependents: from a monthly salary of 3,333,333 KRW, deduct National Pension 149,999, Health Insurance 118,166, Long-Term Care 15,302, Employment Insurance 29,999, income tax 133,605, and local tax 13,360 — leaving a monthly take-home pay of about 2,872,902 KRW (annual take-home about 34,474,824 KRW).",
+    "example2": "Annual salary 60,000,000 KRW, 1 dependent: from a monthly salary of 5,000,000 KRW, total deductions of 825,056 KRW leave a monthly take-home pay of about 4,174,944 KRW (annual take-home about 50,099,328 KRW).",
+    "rateNote": "This calculator applies current deduction rates: National Pension 4.5%, Health Insurance 3.545%, Long-Term Care Insurance 12.95%, and Employment Insurance 0.9%. Rates change annually, so check official sources like the National Pension Service and National Tax Service for the most accurate figures.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "How does the number of dependents affect the result?", "a": "Each dependent adds a 1.5M KRW personal deduction, which lowers taxable income and therefore income tax — increasing take-home pay." },
+      { "q": "Does National Pension keep increasing with higher income?", "a": "No. National Pension is capped at a monthly income of 5.9M KRW; income above that isn't subject to additional National Pension contributions." },
+      { "q": "Why does take-home pay differ between companies at the same salary?", "a": "While insurance and tax rates are the same everywhere, companies structure non-taxable allowances (meal allowance, vehicle allowance, etc.) differently, which changes taxable income and therefore take-home pay." },
+      { "q": "Should I negotiate salary based on take-home pay?", "a": "Salary is usually negotiated on a pre-tax basis, but since take-home pay is what you actually feel in your pocket, it's worth calculating it in advance before negotiating." },
+      { "q": "Does this apply to freelancers or self-employed income?", "a": "No. This calculator is based on employment income for workers enrolled in the 4 major social insurances. Freelancers are typically taxed differently, e.g., a flat 3.3% withholding on business income." }
+    ]
   },
   "SalaryCalculator": {
     "inputTitle": "Enter Salary Details",
