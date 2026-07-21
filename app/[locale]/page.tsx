@@ -46,6 +46,55 @@ export default async function Home({
       desc: t("salaryDesc"),
       category: "finance",
     },
+    {
+      href: "/age-calculator",
+      emoji: "🎂",
+      title: t("ageTitle"),
+      desc: t("ageDesc"),
+      category: "convert",
+    },
+    {
+      href: "/severance-calculator",
+      emoji: "🏢",
+      title: t("severanceTitle"),
+      desc: t("severanceDesc"),
+      category: "finance",
+    },
+    {
+      href: "/vat-calculator",
+      emoji: "🧾",
+      title: t("vatTitle"),
+      desc: t("vatDesc"),
+      category: "finance",
+    },
+    {
+      href: "/dday-calculator",
+      emoji: "📅",
+      title: t("ddayTitle"),
+      desc: t("ddayDesc"),
+      category: "convert",
+    },
+    {
+      href: "/calorie-calculator",
+      emoji: "🔥",
+      title: t("calorieTitle"),
+      desc: t("calorieDesc"),
+      category: "health",
+    },
+    {
+      href: "/savings-calculator",
+      emoji: "🏦",
+      title: t("savingsTitle"),
+      desc: t("savingsDesc"),
+      category: "finance",
+    },
+    {
+      href: "/due-date-calculator",
+      emoji: "🤰",
+      title: t("dueDateTitle"),
+      desc: t("dueDateDesc"),
+      category: "health",
+    },
   ];
 
   const categoryLabels: Record<string, string> = {

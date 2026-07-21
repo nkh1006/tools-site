@@ -33,7 +33,21 @@
     "unitTitle": "Unit Converter",
     "unitDesc": "Convert length, weight, temperature, area, and more",
     "salaryTitle": "Salary Take-Home Pay Calculator",
-    "salaryDesc": "Instantly calculate monthly take-home pay after Korean social insurance and income tax deductions"
+    "salaryDesc": "Instantly calculate monthly take-home pay after Korean social insurance and income tax deductions",
+    "ageTitle": "Age Calculator",
+    "ageDesc": "Calculate international age, year age, and Korean age from a date of birth",
+    "severanceTitle": "Severance Pay Calculator",
+    "severanceDesc": "Estimate severance pay from start date, end date, and recent pay",
+    "vatTitle": "VAT Calculator",
+    "vatDesc": "Easily convert between supply amount and VAT-inclusive amount",
+    "ddayTitle": "D-day Calculator",
+    "ddayDesc": "Check the number of days until a specific date in D-day format",
+    "calorieTitle": "Calorie Calculator",
+    "calorieDesc": "Calculate basal metabolic rate (BMR) and recommended daily calories (TDEE)",
+    "savingsTitle": "Savings & Deposit Interest Calculator",
+    "savingsDesc": "Calculate the maturity payout for installment savings or a lump-sum deposit",
+    "dueDateTitle": "Pregnancy Due Date Calculator",
+    "dueDateDesc": "Calculate your due date and current week of pregnancy from your last period"
   },
   "LoanPage": {
     "metaTitle": "Loan Calculator",
@@ -313,5 +327,210 @@
     "s6BodyPost": "page.",
     "s7Title": "7. Policy Changes",
     "s7Body": "This privacy policy may be updated to reflect changes in law or our services. Updates will be announced on this page."
+  },
+  "AgePage": {
+    "metaTitle": "Age Calculator",
+    "metaDescription": "Enter your date of birth to instantly calculate your international age, year age, and Korean age, based on Korea's standardized international-age rule (effective since 2023).",
+    "h1": "🎂 Age Calculator",
+    "subtitle": "Check your international age, year age, and Korean age from your date of birth",
+    "formulaTitle": "How Age Is Calculated",
+    "formulaBody": "International age depends on whether your birthday has passed this year, and has been the sole legal standard in Korea since June 2023. Year age is calculated as 'reference year − birth year' regardless of birthday, and is still used in some laws such as military service law. Korean age is a traditional method that counts the birth year as age 1; it no longer has any legal effect.",
+    "exampleTitle": "Example",
+    "example1": "For someone born June 15, 1995, calculated as of July 21, 2026: international age 31, year age 31, Korean age 32.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "Should I use international age or Korean age?", "a": "Since June 28, 2023, Korea's legal and administrative age has been standardized to international age. Use international age for contracts, official documents, and similar purposes." },
+      { "q": "Where is year age used?", "a": "Some laws, such as military service law and youth protection law, still use 'year age' (reference year minus birth year). Unless you're subject to those specific laws, think in terms of international age for everyday purposes." },
+      { "q": "How is 'has the birthday passed' determined for international age?", "a": "If today's date is on or after the birthday, the birthday is considered to have passed and that year's age applies as-is. If the birthday hasn't occurred yet, one year is subtracted." }
+    ]
+  },
+  "AgeCalculator": {
+    "inputTitle": "Enter Date of Birth",
+    "birthDate": "Date of Birth",
+    "refDate": "Reference Date",
+    "resultTitle": "Age Calculation Result",
+    "internationalAge": "International Age",
+    "yearAge": "Year Age",
+    "koreanAge": "Korean Age",
+    "ageUnit": "",
+    "daysLived": "You have been alive for {days} days"
+  },
+  "SeverancePage": {
+    "metaTitle": "Severance Pay Calculator",
+    "metaDescription": "Enter your start date, end date, and last 3 months of pay to calculate your severance pay under Korea's Labor Standards Act.",
+    "h1": "🏢 Severance Pay Calculator",
+    "subtitle": "Estimate your severance pay from your start date, end date, and last 3 months of pay",
+    "formulaTitle": "Severance Pay Formula",
+    "formulaBody": "Severance pay = average daily wage × 30 days × (days of service ÷ 365). Average daily wage is calculated by dividing total wages paid over the 3 months before your last day by the number of calendar days in that period. Under Korea's Labor Standards Act, only employees with 1 year or more of continuous service are entitled to severance pay.",
+    "exampleTitle": "Example",
+    "example1": "Started January 1, 2022 and left January 1, 2026 (1,461 days of service), with 12,000,000 KRW total pay over the last 3 months: average daily wage is about 130,435 KRW, and estimated severance pay is about 15,662,895 KRW.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "Do I get severance pay with less than 1 year of service?", "a": "No. Under the Labor Standards Act, employees with less than 1 year of continuous service are not entitled to severance pay." },
+      { "q": "Are bonuses or unused annual leave pay included in average wage?", "a": "Yes, prorated bonuses and annual leave allowance paid during the last 3 months can be included in the average wage calculation, so your actual amount may be higher than this calculator's estimate." },
+      { "q": "Can I also receive unemployment benefits along with severance pay?", "a": "Severance pay compensates for your service, while unemployment benefits are a separate program requiring employment insurance enrollment history and involuntary separation, among other conditions — the two are paid independently of each other." }
+    ]
+  },
+  "SeveranceCalculator": {
+    "inputTitle": "Enter Employment Details",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "last3MonthsPay": "Total Pay, Last 3 Months (pre-tax)",
+    "currencyUnit": "KRW",
+    "resultTitle": "Estimated Severance Pay",
+    "serviceDays": "Days of Service",
+    "daysValue": "{days} days",
+    "avgDailyWage": "Average Daily Wage",
+    "notEligible": "With less than 1 year of service, there is no legal entitlement to severance pay. This result is for reference only."
+  },
+  "VatPage": {
+    "metaTitle": "VAT Calculator",
+    "metaDescription": "Enter a supply amount or a VAT-inclusive amount to automatically calculate Korea's 10% value-added tax.",
+    "h1": "🧾 VAT Calculator",
+    "subtitle": "Easily convert between supply amount and VAT-inclusive amount",
+    "formulaTitle": "VAT Formula",
+    "formulaBody": "Korea's VAT rate is 10%. From supply amount: VAT = supply amount × 10%, total amount = supply amount × 1.1. From VAT-inclusive amount: supply amount = total amount ÷ 1.1, VAT = total amount − supply amount.",
+    "exampleTitle": "Example",
+    "example1": "From a supply amount of 1,000,000 KRW: VAT is 100,000 KRW, total amount is 1,100,000 KRW.",
+    "example2": "From a VAT-inclusive amount of 1,100,000 KRW: supply amount is about 1,000,000 KRW, VAT is about 100,000 KRW.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "Does VAT apply to every transaction?", "a": "In principle, a 10% VAT applies to the supply of goods and services, but tax-exempt items (certain groceries, medical and educational services, etc.) are not subject to VAT." },
+      { "q": "Do simplified taxpayers use this same formula?", "a": "No. Simplified taxpayers use a different tax calculation method based on industry-specific value-added rates, so this calculator is based on general (regular) taxpayers." },
+      { "q": "What if the supply amount and VAT on my tax invoice differ slightly from this calculation?", "a": "A difference of 1-2 KRW can occur due to differences in rounding to the nearest won. For official tax invoices, follow the National Tax Service's Hometax standards." }
+    ]
+  },
+  "VatCalculator": {
+    "inputTitle": "Enter Amount",
+    "modeExclusive": "From Supply Amount",
+    "modeInclusive": "From VAT-Inclusive Amount",
+    "supplyAmount": "Supply Amount",
+    "totalAmount": "Total Amount (VAT included)",
+    "currencyUnit": "KRW",
+    "resultTitle": "Result",
+    "vatAmount": "VAT (10%)"
+  },
+  "DdayPage": {
+    "metaTitle": "D-day Calculator",
+    "metaDescription": "Calculate the number of days until or since a target date, shown in D-day format.",
+    "h1": "📅 D-day Calculator",
+    "subtitle": "Check the number of days until a specific date in D-day format",
+    "formulaTitle": "How D-day Is Calculated",
+    "formulaBody": "D-day = target date − today's date. If the target date is in the future, it's shown as D-(days remaining); if it's today, D-DAY; if it's in the past, D+(days elapsed).",
+    "exampleTitle": "Example",
+    "example1": "If today is July 21, 2026 and the target date is August 15, 2026, it displays as D-25.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "Can I use this to count down to an exam or wedding?", "a": "Yes. It's widely used to track the days remaining until exams, weddings, trip departures, and other important dates." },
+      { "q": "How is the target date itself displayed?", "a": "When the target date equals today, it shows as 'D-DAY'; from the next day onward, it increases as D+1, D+2, and so on." },
+      { "q": "What happens if I enter a past date?", "a": "If the date has already passed, it displays as D+(days elapsed), letting you check how many days have passed since a specific event." }
+    ]
+  },
+  "DdayCalculator": {
+    "inputTitle": "Enter Target Date",
+    "targetDate": "Target Date",
+    "resultTitle": "D-day",
+    "weeksUntil": "About {weeks} weeks remaining",
+    "weeksSince": "About {weeks} weeks ago"
+  },
+  "CaloriePage": {
+    "metaTitle": "Calorie Calculator",
+    "metaDescription": "Enter your sex, age, height, weight, and activity level to calculate your Basal Metabolic Rate (BMR) and recommended daily calories (TDEE).",
+    "h1": "🔥 Calorie Calculator",
+    "subtitle": "Check your basal metabolic rate and activity-based daily calorie recommendation",
+    "formulaTitle": "BMR Formula",
+    "formulaBody": "This calculator uses the Mifflin-St Jeor equation. Male: BMR = 10×weight(kg) + 6.25×height(cm) − 5×age + 5. Female: BMR = 10×weight(kg) + 6.25×height(cm) − 5×age − 161. Total Daily Energy Expenditure (TDEE) = BMR × activity factor (1.2–1.9).",
+    "exampleTitle": "Example",
+    "example1": "For a 30-year-old male, 170cm, 65kg, with light activity: BMR is 1,568 kcal, TDEE is about 2,155 kcal.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "What's the difference between BMR and TDEE?", "a": "BMR (Basal Metabolic Rate) is the minimum calories needed to sustain life with no activity at all, while TDEE (Total Daily Energy Expenditure) adds your daily activity level on top of that to estimate actual calories burned per day." },
+      { "q": "How much less should I eat to lose weight?", "a": "Eating roughly 500 kcal less than your TDEE per day is generally associated with about 0.5 kg of weight loss per week. Losing weight too quickly can be harmful to your health, so caution is advised." },
+      { "q": "Is this formula accurate for people with a lot of muscle mass?", "a": "The Mifflin-St Jeor equation is an estimate based on typical body composition; people with very high or very low muscle mass may see a difference from their actual metabolic rate. For precise measurement, use a body composition analyzer." }
+    ]
+  },
+  "CalorieCalculator": {
+    "inputTitle": "Enter Body Info",
+    "gender": "Sex",
+    "male": "Male",
+    "female": "Female",
+    "age": "Age",
+    "ageUnit": "",
+    "height": "Height",
+    "weight": "Weight",
+    "activity": "Activity Level",
+    "activity_sedentary": "Sedentary (little to no exercise)",
+    "activity_light": "Light (exercise 1-3 days/week)",
+    "activity_moderate": "Moderate (exercise 3-5 days/week)",
+    "activity_active": "Active (exercise 6-7 days/week)",
+    "activity_veryActive": "Very Active (daily intense exercise or physical job)",
+    "resultTitle": "Calorie Results",
+    "bmr": "Basal Metabolic Rate (BMR)",
+    "tdee": "Daily Calorie Burn (TDEE)",
+    "kcal": "{value} kcal",
+    "loseGoal": "Weight Loss Goal",
+    "gainGoal": "Weight Gain Goal"
+  },
+  "SavingsPage": {
+    "metaTitle": "Savings & Deposit Interest Calculator",
+    "metaDescription": "Calculate the maturity payout and pre-tax interest for an installment savings account (monthly deposits) or a lump-sum deposit account.",
+    "h1": "🏦 Savings & Deposit Interest Calculator",
+    "subtitle": "Check the maturity payout for installment savings (monthly) or a lump-sum deposit",
+    "formulaTitle": "Interest Formulas",
+    "formulaInstallmentTitle": "Installment Savings (monthly deposits, simple interest)",
+    "formulaInstallmentBody": "Pre-tax interest = monthly deposit × months×(months+1)/2 × (annual rate ÷ 12). Maturity payout = (monthly deposit × months) + pre-tax interest.",
+    "formulaDepositTitle": "Lump-Sum Deposit (monthly compounding)",
+    "formulaDepositBody": "Maturity amount = deposit × (1 + annual rate ÷ 12)^months.",
+    "exampleTitle": "Example",
+    "example1": "Depositing 500,000 KRW monthly at 3.5% annual interest for 12 months: principal of 6,000,000 KRW plus about 113,750 KRW in pre-tax interest, for a maturity payout of about 6,113,750 KRW.",
+    "noteTitle": "Tax Note",
+    "noteBody": "This calculator shows pre-tax amounts (before the 15.4% interest income tax withholding). Your actual payout will be net of interest income tax.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "What's the difference between installment savings and a deposit?", "a": "Installment savings involves depositing a fixed amount each month, while a deposit involves placing a lump sum all at once. At the same interest rate, installment savings earns less total interest than a deposit because each month's contribution is invested for a shorter period." },
+      { "q": "How much interest income tax is withheld?", "a": "Typically 14% interest income tax plus 1.4% local income tax, for a total of 15.4% withheld at the source." },
+      { "q": "Do I get the full contracted rate if I withdraw early?", "a": "No. Most financial products apply a much lower early-termination rate than the contracted rate if you withdraw early, significantly reducing your interest." }
+    ]
+  },
+  "SavingsCalculator": {
+    "inputTitle": "Enter Savings Details",
+    "modeInstallment": "Installment Savings (monthly)",
+    "modeDeposit": "Deposit (lump-sum)",
+    "monthlyAmount": "Monthly Deposit",
+    "depositAmount": "Deposit Amount",
+    "currencyUnit": "KRW",
+    "rate": "Annual Interest Rate",
+    "months": "Savings Term",
+    "monthsUnit": "months",
+    "resultTitle": "Maturity Payout (pre-tax)",
+    "principal": "Principal",
+    "interest": "Pre-Tax Interest",
+    "pretaxNote": "Amount shown is before interest income tax (15.4%) is deducted."
+  },
+  "DueDatePage": {
+    "metaTitle": "Pregnancy Due Date Calculator",
+    "metaDescription": "Enter the first day of your last menstrual period to calculate your estimated due date and current week of pregnancy using Naegele's Rule.",
+    "h1": "🤰 Pregnancy Due Date Calculator",
+    "subtitle": "Check your estimated due date and current week of pregnancy from your last menstrual period",
+    "formulaTitle": "Due Date Formula",
+    "formulaBody": "This calculator uses Naegele's Rule. Due date = first day of last menstrual period + 280 days (40 weeks). This assumes a 28-day menstrual cycle; the actual ovulation date or a different cycle length can shift the estimate by a few days.",
+    "exampleTitle": "Example",
+    "example1": "If the first day of your last period was May 12, 2026, your estimated due date is around February 16, 2027.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "Can the actual birth date differ from the due date?", "a": "Yes. The due date is a statistical average, and most births occur within about 2 weeks before or after it." },
+      { "q": "What if my cycle isn't 28 days?", "a": "Naegele's Rule assumes a 28-day cycle, so if your cycle is longer or shorter, an ultrasound-based estimate from your doctor based on the actual ovulation date will be more accurate." },
+      { "q": "How are weeks of pregnancy counted?", "a": "The first day of your last period is counted as week 0, day 0 of pregnancy; actual conception typically occurs about 2 weeks after that date." }
+    ]
+  },
+  "DueDateCalculator": {
+    "inputTitle": "Enter Last Period Start Date",
+    "lmpDate": "First Day of Last Period",
+    "dueDateLabel": "Estimated Due Date",
+    "currentWeek": "Current Week of Pregnancy",
+    "weeksDays": "{weeks}w {days}d",
+    "daysUntilDue": "Time Until Due Date",
+    "daysLeft": "{days} days left",
+    "daysPast": "{days} days past"
   }
 }
