@@ -34,12 +34,28 @@ export default async function AboutPage({
     { emoji: "💰", nameKey: "loan", href: "/loan-calculator" },
     { emoji: "⚖️", nameKey: "bmi", href: "/bmi-calculator" },
     { emoji: "📐", nameKey: "unit", href: "/unit-converter" },
-  ];
+    { emoji: "💵", nameKey: "salary", href: "/salary-calculator" },
+    { emoji: "🎂", nameKey: "age", href: "/age-calculator" },
+    { emoji: "🏢", nameKey: "severance", href: "/severance-calculator" },
+    { emoji: "🧾", nameKey: "vat", href: "/vat-calculator" },
+    { emoji: "📅", nameKey: "dday", href: "/dday-calculator" },
+    { emoji: "🔥", nameKey: "calorie", href: "/calorie-calculator" },
+    { emoji: "🏦", nameKey: "savings", href: "/savings-calculator" },
+    { emoji: "🤰", nameKey: "dueDate", href: "/due-date-calculator" },
+  ] as const;
   const homeT = await getTranslations({ locale, namespace: "Home" });
   const toolNames: Record<string, string> = {
     loan: homeT("loanTitle"),
     bmi: homeT("bmiTitle"),
     unit: homeT("unitTitle"),
+    salary: homeT("salaryTitle"),
+    age: homeT("ageTitle"),
+    severance: homeT("severanceTitle"),
+    vat: homeT("vatTitle"),
+    dday: homeT("ddayTitle"),
+    calorie: homeT("calorieTitle"),
+    savings: homeT("savingsTitle"),
+    dueDate: homeT("dueDateTitle"),
   };
 
   return (
@@ -57,7 +73,7 @@ export default async function AboutPage({
         {/* 제공 서비스 */}
         <div className="bg-white rounded-2xl border border-gray-200 p-6">
           <h2 className="font-bold text-gray-800 mb-4">{t("servicesTitle")}</h2>
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {toolLinks.map((tool) => (
               <Link
                 key={tool.href}

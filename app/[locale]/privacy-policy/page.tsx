@@ -46,7 +46,6 @@ export default async function PrivacyPolicyPage({
           <h2 className="text-base font-bold text-gray-800 mb-3">{t("s2Title")}</h2>
           <p className="mb-2">{t("s2Intro")}</p>
           <ul className="list-disc list-inside space-y-1 pl-2">
-            <li>{t("s2Item1")}</li>
             <li>{t("s2Item2")}</li>
             <li>{t("s2Item3")}</li>
           </ul>
