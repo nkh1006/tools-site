@@ -28,6 +28,37 @@ export default function Header() {
           <Link href="/salary-calculator" className="hover:text-blue-600 transition-colors">
             {t("navSalary")}
           </Link>
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:text-blue-600 transition-colors">
+              {t("navMore")}
+              <span className="text-xs">▾</span>
+            </button>
+            <div className="absolute left-0 top-full pt-2 hidden group-hover:block">
+              <div className="bg-white border border-gray-200 rounded-xl shadow-lg py-2 w-48">
+                <Link href="/age-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navAge")}
+                </Link>
+                <Link href="/severance-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navSeverance")}
+                </Link>
+                <Link href="/vat-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navVat")}
+                </Link>
+                <Link href="/dday-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navDday")}
+                </Link>
+                <Link href="/calorie-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navCalorie")}
+                </Link>
+                <Link href="/savings-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navSavings")}
+                </Link>
+                <Link href="/due-date-calculator" className="block px-4 py-2 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                  {t("navDueDate")}
+                </Link>
+              </div>
+            </div>
+          </div>
           <Link
             href={pathname}
             locale={otherLocale}

@@ -11,6 +11,14 @@
     "navBmi": "BMI Calculator",
     "navUnit": "Unit Converter",
     "navSalary": "Salary Calculator",
+    "navMore": "More",
+    "navAge": "Age Calculator",
+    "navSeverance": "Severance Calculator",
+    "navVat": "VAT Calculator",
+    "navDday": "D-day Calculator",
+    "navCalorie": "Calorie Calculator",
+    "navSavings": "Savings & Deposit",
+    "navDueDate": "Due Date Calculator",
     "switchTo": "한국어"
   },
   "Footer": {

@@ -11,6 +11,14 @@
     "navBmi": "BMI계산기",
     "navUnit": "단위변환",
     "navSalary": "연봉계산기",
+    "navMore": "더보기",
+    "navAge": "나이계산기",
+    "navSeverance": "퇴직금계산기",
+    "navVat": "부가세계산기",
+    "navDday": "디데이계산기",
+    "navCalorie": "칼로리계산기",
+    "navSavings": "적금·예금계산기",
+    "navDueDate": "출산예정일계산기",
     "switchTo": "English"
   },
   "Footer": {
