@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import UnitConverter from "../../components/tools/UnitConverter";
-import AdBanner from "../../components/AdBanner";
 
 export async function generateMetadata({
   params,
@@ -38,9 +37,7 @@ export default async function UnitConverterPage({
         <p className="text-sm text-gray-500 mt-1">{t("subtitle")}</p>
       </div>
 
-      <AdBanner />
       <UnitConverter />
-      <AdBanner />
 
       <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6 space-y-3 text-sm text-gray-600 leading-relaxed">
         <h2 className="font-bold text-gray-800">{t("formulaTitle")}</h2>

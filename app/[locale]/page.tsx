@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "../../i18n/navigation";
-import AdBanner from "../components/AdBanner";
 
 const categoryColors: Record<string, string> = {
   finance: "bg-blue-100 text-blue-700",
@@ -111,7 +110,6 @@ export default async function Home({
         <p className="text-gray-500">{t("subtitle")}</p>
       </div>
 
-      <AdBanner size="horizontal" />
 
       {/* 툴 그리드 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
@@ -137,7 +135,6 @@ export default async function Home({
         ))}
       </div>
 
-      <AdBanner size="horizontal" />
     </div>
   );
 }
